@@ -1,0 +1,19 @@
+[submodule "lib/django"]
+	path = lib/django
+	url = https://github.com/django/django
+[submodule "lib/gflags"]
+	path = lib/gflags
+	url = https://github.com/google/python-gflags
+    ignore = untracked
+[submodule "lib/pycrypto"]
+	path = lib/pycrypto
+	url = https://github.com/dlitz/pycrypto.git
+[submodule "lib/pyxl"]
+	path = lib/pyxl
+	url = https://github.com/dropbox/pyxl.git
+[submodule "lib/sqlalchemy"]
+	path = lib/sqlalchemy
+	url = https://github.com/zzzeek/sqlalchemy
+[submodule "lib/virtualenv"]
+	path = lib/virtualenv
+	url = https://github.com/dropbox/virtualenv
