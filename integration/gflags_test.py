@@ -1,7 +1,7 @@
 import glob
 import subprocess, sys, os
 
-gflags_dir = os.path.dirname(os.path.abspath(__file__)) + "/gflags"
+gflags_dir = os.path.dirname(os.path.abspath(__file__)) + "/../lib/gflags"
 os.chdir(gflags_dir)
 
 env = os.environ

@@ -7,7 +7,7 @@ ENV_NAME = "pyxl_test_env_" + os.path.basename(sys.executable)
 
 if not os.path.exists(ENV_NAME) or os.stat(sys.executable).st_mtime > os.stat(ENV_NAME + "/bin/python").st_mtime:
     print "Creating virtualenv to install testing dependencies..."
-    VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/virtualenv/virtualenv.py"
+    VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../lib/virtualenv/virtualenv.py"
 
     try:
         args = [sys.executable, VIRTUALENV_SCRIPT, "-p", sys.executable, ENV_NAME]
@@ -23,7 +23,7 @@ if not os.path.exists(ENV_NAME) or os.stat(sys.executable).st_mtime > os.stat(EN
         raise ei[0], ei[1], ei[2]
 
 
-PYXL_DIR = os.path.dirname(__file__) + "/pyxl"
+PYXL_DIR = os.path.dirname(__file__) + "/../lib/pyxl"
 python_exe = os.path.abspath(ENV_NAME + "/bin/python")
 
 subprocess.check_call([python_exe, "setup.py", "build"], cwd=PYXL_DIR)

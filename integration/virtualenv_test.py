@@ -3,7 +3,7 @@ import sys
 import subprocess
 import shutil
 
-VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/virtualenv/virtualenv.py"
+VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../lib/virtualenv/virtualenv.py"
 
 if os.path.exists("test_env"):
     print "Removing the existing 'test_env/' directory"

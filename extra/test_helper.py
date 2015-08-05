@@ -11,7 +11,7 @@ def create_virtenv(name, package_list = None, force_create = False):
         
         print "Creating virtualenv to install testing dependencies..."
         
-        VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../integration/virtualenv/virtualenv.py"
+        VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../lib/virtualenv/virtualenv.py"
 
         try:
             args = [sys.executable, VIRTUALENV_SCRIPT, "-p", sys.executable, name]

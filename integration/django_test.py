@@ -5,7 +5,7 @@ import sys
 import time
 import urllib2
 
-EXTRA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/django"
+EXTRA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/../lib/django"
 sys.path.insert(0, EXTRA_PATH)
 
 from django.core.management import execute_from_command_line

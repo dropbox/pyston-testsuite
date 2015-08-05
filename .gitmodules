@@ -11,6 +11,7 @@
 [submodule "lib/pyxl"]
 	path = lib/pyxl
 	url = https://github.com/dropbox/pyxl.git
+    ignore = untracked
 [submodule "lib/sqlalchemy"]
 	path = lib/sqlalchemy
 	url = https://github.com/zzzeek/sqlalchemy

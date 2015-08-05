@@ -10,7 +10,7 @@ if p.wait() != 0:
     print >>sys.stderr, "curl-config not available; try 'sudo apt-get install libcurl4-openssl-dev'"
     sys.exit(1)
 
-VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../integration/virtualenv/virtualenv.py"
+VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../lib/virtualenv/virtualenv.py"
 
 if os.path.exists("pycurl_test_env"):
     print "Removing the existing 'pycurl_test_env/' directory"

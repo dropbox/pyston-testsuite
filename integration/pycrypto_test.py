@@ -1,6 +1,9 @@
 import subprocess, sys, os, shutil, StringIO
 
-pycrypto_dir = os.path.dirname(os.path.abspath(__file__)) + "/pycrypto"
+PATCHES = ["pycrypto_0001-fastmath-Add-support-for-Pyston.patch"]
+PATCHES = [os.path.abspath(os.path.join(os.path.dirname(__file__), p)) for p in PATCHES]
+
+pycrypto_dir = os.path.dirname(os.path.abspath(__file__)) + "/../lib/pycrypto"
 os.chdir(pycrypto_dir)
 
 for d in ("build", "install"):
@@ -12,8 +15,7 @@ devnull = open(os.devnull, "w")
 
 
 print "-- Patching pycrypto"
-patches = ["../pycrypto_0001-fastmath-Add-support-for-Pyston.patch"]
-for patch in patches:
+for patch in PATCHES:
     try:
         cmd = ["patch", "-p1", "--forward", "-i", patch]
         subprocess.check_output(cmd, stderr=subprocess.STDOUT)
@@ -57,7 +59,7 @@ assert key.decrypt(enc_data) == test_string
 print "-- Tests finished"
 
 print "-- Unpatching pycrypto"
-for patch in reversed(patches):
+for patch in reversed(PATCHES):
     cmd = ["patch", "-p1", "--forward", "-i", patch]
     cmd += ["-R"]
     subprocess.check_output(cmd, stderr=subprocess.STDOUT)

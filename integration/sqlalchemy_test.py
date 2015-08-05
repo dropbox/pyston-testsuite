@@ -11,7 +11,7 @@ ENV_NAME = "sqlalchemy_test_env_" + os.path.basename(sys.executable)
 
 if not os.path.exists(ENV_NAME) or os.stat(sys.executable).st_mtime > os.stat(ENV_NAME + "/bin/python").st_mtime:
     print "Creating virtualenv to install testing dependencies..."
-    VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/virtualenv/virtualenv.py"
+    VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../lib/virtualenv/virtualenv.py"
 
     try:
         args = [sys.executable, VIRTUALENV_SCRIPT, "-p", sys.executable, ENV_NAME]
@@ -30,7 +30,7 @@ if not os.path.exists(ENV_NAME) or os.stat(sys.executable).st_mtime > os.stat(EN
 
 # subprocess.check_call([os.path.abspath("sqlalchemy_test_env/bin/python"), "-c", "import py; print type(py); print py.builtin"])
 
-SQLALCHEMY_DIR = os.path.dirname(__file__) + "/sqlalchemy"
+SQLALCHEMY_DIR = os.path.dirname(__file__) + "/../lib/sqlalchemy"
 python_exe = os.path.abspath(ENV_NAME + "/bin/python")
 
 # Exec'ing the test suite can be nice for debugging, but let's the subprocess version
