@@ -18,3 +18,6 @@
 [submodule "lib/virtualenv"]
 	path = lib/virtualenv
 	url = https://github.com/dropbox/virtualenv
+[submodule "lib/numpy"]
+	path = lib/numpy
+	url = https://github.com/numpy/numpy.git
