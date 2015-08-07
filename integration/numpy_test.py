@@ -9,7 +9,7 @@ ENV_NAME = "numpy_test_env_" + os.path.basename(sys.executable)
 
 if not os.path.exists(ENV_NAME) or os.stat(sys.executable).st_mtime > os.stat(ENV_NAME + "/bin/python").st_mtime:
     print "Creating virtualenv to install testing dependencies..."
-    VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/virtualenv/virtualenv.py"
+    VIRTUALENV_SCRIPT = os.path.dirname(__file__) + "/../lib/virtualenv/virtualenv.py"
 
     try:
         args = [sys.executable, VIRTUALENV_SCRIPT, "-p", sys.executable, ENV_NAME]
@@ -27,7 +27,7 @@ if not os.path.exists(ENV_NAME) or os.stat(sys.executable).st_mtime > os.stat(EN
 SRC_DIR = ENV_NAME
 PYTHON_EXE = os.path.abspath(ENV_NAME + "/bin/python")
 CYTHON_DIR = os.path.abspath(os.path.join(SRC_DIR, "Cython-0.22"))
-NUMPY_DIR = ENV_NAME + "/../../numpy"
+NUMPY_DIR = os.path.dirname(__file__) + "/../lib/numpy"
 
 print "\n>>>"
 print ">>> Setting up Cython..."
@@ -43,8 +43,11 @@ if not os.path.exists(CYTHON_DIR):
     print "Applied Cython patch"
 
 
-    subprocess.check_call([PYTHON_EXE, "setup.py", "install"], cwd=CYTHON_DIR)
-    subprocess.check_call([PYTHON_EXE, "-c", "import Cython"], cwd=CYTHON_DIR)
+    try:
+        subprocess.check_call([PYTHON_EXE, "setup.py", "install"], cwd=CYTHON_DIR)
+        subprocess.check_call([PYTHON_EXE, "-c", "import Cython"], cwd=CYTHON_DIR)
+    except:
+        subprocess.check_call(["rm", "-rf", CYTHON_DIR])
 else:
     print ">>> Cython already installed."
     print ">>>"
@@ -92,7 +95,8 @@ def mandelbrot( h,w, maxit=20 ):
 
         return divtime
 
-mandelbrot(complex(400),complex(400))
+m = mandelbrot(complex(400),complex(400))
+print m
 """
 
 print "\n>>>"
