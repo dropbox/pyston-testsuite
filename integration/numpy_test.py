@@ -1,4 +1,3 @@
-# skip-if: True
 # script expects to find the numpy directory at the same level as the Pyston directory
 import os
 import sys
@@ -51,6 +50,18 @@ if not os.path.exists(CYTHON_DIR):
 else:
     print ">>> Cython already installed."
     print ">>>"
+
+print "\n>>>"
+print ">>> Patching NumPy..."
+print ">>>"
+NUMPY_PATCH_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), "numpy_patch.patch"))
+try:
+    cmd = ["patch", "-p1", "--forward", "-i", NUMPY_PATCH_FILE, "-d", NUMPY_DIR]
+    subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+except subprocess.CalledProcessError as e:
+    print e.output
+    if "Reversed (or previously applied) patch detected!  Skipping patch" not in e.output:
+        raise e
 
 print "\n>>>"
 print ">>> Setting up NumPy..."
@@ -108,6 +119,12 @@ print "\n>>>"
 print ">>> Running NumPy mandelbrot test..."
 print ">>>"
 subprocess.check_call([PYTHON_EXE, "-c", mandelbrot], cwd=CYTHON_DIR)
+
+print "\n>>>"
+print ">>> Unpatching NumPy..."
+print ">>>"
+cmd = ["patch", "-p1", "--forward", "-i", NUMPY_PATCH_FILE, "-R", "-d", NUMPY_DIR]
+subprocess.check_output(cmd, stderr=subprocess.STDOUT)
 
 print
 print "PASSED"
